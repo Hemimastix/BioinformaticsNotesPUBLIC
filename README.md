@@ -1,6 +1,6 @@
 # Private Notes
 
-Yana's notes to self and scraps of code.
+Notes to self and scraps of code. **Accuracy not guaranteed, proceed at own risk!!!**
 
 
 ## Table of Contents
