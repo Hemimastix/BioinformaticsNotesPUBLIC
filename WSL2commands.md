@@ -19,11 +19,11 @@ To get Windows path to current Unix directory: **WARNING: DO NOT ALTER UNIX FILE
     pwd | xargs -I % wslpath -w '%'
 
 > Usage:
->
->*    -a    force result to absolute path format
->*    -u    translate from a Windows path to a WSL path (default)
->*    -w    translate from a WSL path to a Windows path
->*    -m    translate from a WSL path to a Windows path, with '/' instead of '\'
+> 
+> * -a    force result to absolute path format
+> * -u    translate from a Windows path to a WSL path (default)
+> * -w    translate from a WSL path to a Windows path
+> * -m    translate from a WSL path to a Windows path, with '/' instead of '\'
 
 ### Dos to Unix line endings
 
@@ -35,7 +35,6 @@ https://blog.codinghorror.com/the-great-newline-schism/
 tr -d '\r' < "$1" > "${1%.*}.UX.${1##*.}"
 ```
 
-
 #### Running pandoc in Powershell
 
 Simply execute `pandoc.exe` --help to test if works; seems to work on 64bit version. Note: ~ doesn't work like in unix, use tab to autocomplete and write full path.
@@ -45,3 +44,19 @@ Simply execute `pandoc.exe` --help to test if works; seems to work on 64bit vers
 * gfm = github flavoured markdown
 * latex probably needs a lot more options to work properly; does not do well with codeblocks
 * html export works okay 
+
+
+
+## BUG: WSL2 clock stops running while laptop asleep
+
+This causes system date to diverge from reality and may cause problems. To fix:
+
+install `ntpdate` with `sudo apt install ntpdate`
+
+then run:
+
+```
+sudo ntpdate pool.ntp.org
+```
+
+This connects to a cluster of timeservers: [pool.ntp.org: the internet cluster of ntp servers](https://www.ntppool.org/en/) and retrieves correct time. Apparently there are better ways to do this but should not be necessary for standard bioinformatics applications, probably. (from: https://github.com/microsoft/WSL/issues/4245 )
