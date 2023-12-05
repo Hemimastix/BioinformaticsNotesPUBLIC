@@ -12,3 +12,5 @@ Notes to self and scraps of code. **Accuracy not guaranteed, proceed at own risk
 * [Snakemake](https://github.com/Hemimastix/BioinformaticsNotesPUBLIC/blob/main/MakeNotes.md)
 * [Sed notes and tricks](https://github.com/Hemimastix/BioinformaticsNotesPUBLIC/blob/main/SedNotes.md)
 * [BLAST and NCBI](https://github.com/Hemimastix/BioinformaticsNotesPUBLIC/blob/main/BLAST_and_NCBI.md)
+* [SeaView assisting tools and tricks](https://github.com/Hemimastix/BioinformaticsNotesPUBLIC/blob/main/SeaView%20CLI%20assist%20tools.md)
+* [Scripts](https://github.com/Hemimastix/BioinformaticsNotesPUBLIC/blob/main/Scripts/)
