@@ -59,6 +59,19 @@ sudo ntpdate pool.ntp.org
 
 This connects to a cluster of timeservers: [pool.ntp.org: the internet cluster of ntp servers](https://www.ntppool.org/en/) and retrieves correct time. Apparently there are better ways to do this but should not be necessary for standard bioinformatics applications, probably. (from: https://github.com/microsoft/WSL/issues/4245 )
 
+
+
+Some networks can block ntp update, a workaround involves syncing time over http:
+
+```
+sudo apt-get install htpdate
+sudo htpdate -a google.com
+```
+
+[time - ntpdate: no server suitable for synchronization found - Ask Ubuntu](https://askubuntu.com/questions/429306/ntpdate-no-server-suitable-for-synchronization-found)
+
+
+
 ### Consequences of bug: `apt` fails to update
 
 The WSL2 clock lag issue breaks `apt` updates. If `sudo apt update` produces errors like:
@@ -97,6 +110,8 @@ deb-src http://archive.ubuntu.com/ubuntu/ raring-backports main restricted unive
 tl;dr check the clock first if on WSL2. Don't go down the rabbitholes I did. There's nothing good there.
 
 
+
+**Note:** update `apt-get` if you haven't in a while, if the usual repo sites return 404'd
 
 ## `matplotlib findfont()` doesn't see Windows system fonts from WSL2
 

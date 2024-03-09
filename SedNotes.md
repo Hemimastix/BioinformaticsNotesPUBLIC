@@ -54,6 +54,28 @@ ExtractSeq(){
 }
 ```
 
+### Return sequence lengths in single-line alignment file
+
+Returns sequence names with lengths excluding spaces `-`
+
+```bash
+while read line; do if [ "${line:0:1}" == ">" ] ; then echo "$line"; else echo -n "$line" | sed '/>/! s/-//g' | wc -c; fi; done<SingleLineMSA.fastaa
+```
+
+As script:
+
+`GetSeqLengths_fromAln.sh`:
+
+```bash
+#!/bin/bash
+printf "Expects single-line fasta input. All characters except - counted.\n"
+while read line; do if [ "${line:0:1}" == ">" ] ; then echo "$line"; else echo -n "$line" | sed '/>/! s/-//g' | wc -c; fi; done<$1
+```
+
+`echo -n` -- echoes variable without adding a newline `\n` (this is important for `wc -c`)
+
+
+
 ### Find words ending in .sh in a file:
 
 Eg. I want a list of every shell script (conventionally named) mentioned in a makefile:
@@ -105,26 +127,22 @@ the other `[ $]` only matches .sh followed by space or end of line; avoids captu
 
 Note absense of `sort`: this will remove immediate duplicates but maintain order
 
+## Useful patterns
 
+### To match GenBank accession numbers
 
+including those in the older single alphacharacter 5 digit format:
 
+```regex
+[A-Z]{1,2}[0-9]{5,6}[.]{0,1}[1-9]{0,1}
+```
 
+(this assumes the final .1, .2 etc are optional)
 
+Eg. to fix accession numbers with . replaced by - in the last column:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```regex
+sed -r 's/([A-Z]{1,2}[0-9]{5,6})-([0-2]$)/\1.\2/g' 18S28Staxatoexpand_wRCs.tsv >| 18S28Staxatoexpand_wRCs_fixedaccessionid.tsv
+```
 
 
