@@ -82,6 +82,19 @@ head -n 40 file.fastq | awk '{if(NR%4==0) printf("%s",$0);}' |  od -A n -t u1 | 
 
 from https://www.biostars.org/p/63225/
 
+
+
+#### Extract taxa with corresponding numbers from Nexus file
+
+```bash
+#!/bin/bash
+grep '\[[0-9]*\]' "$1" | sed 's/ /\t/' | sed "s/'//g" > "${1%.*}.taxa.txv"
+# keeps [num], inserts tab, removes quotes
+echo "Taxa extracted to ${1%.*}.taxa.txv"
+```
+
+
+
 #### Move empty files to a directory before deletion:
 
 ```shell
@@ -271,5 +284,3 @@ Difference between `\033[` and `\033]`: 'control sequence introducer' (CSI) vs '
 [More reliable reference](https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html) for BASH prompt.
 
 Can combine background and foreground colours`\[\033[44;1;31m\]`  (here, 44 is blue). Other codes instead of 0 and 1 for reg vs. bold: 4: Underscore, 5: Blink, 7: Inverse, and 8: Concealed
-
-
