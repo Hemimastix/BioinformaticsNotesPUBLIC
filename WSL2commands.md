@@ -35,7 +35,7 @@ https://blog.codinghorror.com/the-great-newline-schism/
 tr -d '\r' < "$1" > "${1%.*}.UX.${1##*.}"
 ```
 
-#### Running pandoc in Powershell
+### Running pandoc in Powershell
 
 Simply execute `pandoc.exe` --help to test if works; seems to work on 64bit version. Note: ~ doesn't work like in unix, use tab to autocomplete and write full path.
 
@@ -44,6 +44,18 @@ Simply execute `pandoc.exe` --help to test if works; seems to work on 64bit vers
 * gfm = github flavoured markdown
 * latex probably needs a lot more options to work properly; does not do well with codeblocks
 * html export works okay 
+
+
+
+### For fellow Canadians...
+
+Mashed a key and switched the keyboard layout to Canadian French while inside a MobaXterm X11 windowÉ Fix it by running this command in terminal:
+
+```
+setxkbmap -layout us
+```
+
+
 
 ## BUG: WSL2 clock stops running while laptop asleep
 
@@ -59,8 +71,6 @@ sudo ntpdate pool.ntp.org
 
 This connects to a cluster of timeservers: [pool.ntp.org: the internet cluster of ntp servers](https://www.ntppool.org/en/) and retrieves correct time. Apparently there are better ways to do this but should not be necessary for standard bioinformatics applications, probably. (from: https://github.com/microsoft/WSL/issues/4245 )
 
-
-
 Some networks can block ntp update, a workaround involves syncing time over http:
 
 ```
@@ -69,8 +79,6 @@ sudo htpdate -a google.com
 ```
 
 [time - ntpdate: no server suitable for synchronization found - Ask Ubuntu](https://askubuntu.com/questions/429306/ntpdate-no-server-suitable-for-synchronization-found)
-
-
 
 ### Consequences of bug: `apt` fails to update
 
@@ -108,8 +116,6 @@ deb-src http://archive.ubuntu.com/ubuntu/ raring-backports main restricted unive
 ```
 
 tl;dr check the clock first if on WSL2. Don't go down the rabbitholes I did. There's nothing good there.
-
-
 
 **Note:** update `apt-get` if you haven't in a while, if the usual repo sites return 404'd
 
