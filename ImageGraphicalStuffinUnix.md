@@ -141,8 +141,10 @@ Running `tiffinfo` on the original file reveals some tags that look like this:
 
 (with many more numbers). Since they're unlabelled, we can only guess what these metadata are for and whether they're worth keeping. ImageMagick culls them, and ImageJ often throws out image metadata (especially when you're lazy like me and use `duplicate` with the rectangle instead of cropping images...) So it should be fine, but putting this out as a warning.
 
+I added the following function to my bash profile:
+
 ```bash
-tiff_12bit_to_16bit () {
+tiff12bit_to_16bit () {
   convert "$1" -evaluate LeftShift 4 "${1%.*}.16.tif"
 }
 ```
